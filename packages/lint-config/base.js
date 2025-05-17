@@ -36,7 +36,7 @@ export const config = defineConfig([
     extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
     rules: {
       'import/order': 'warn',
-      // WHY: module bundler => end up with a lot of false positive reports of missing dependencies
+      // ? module bundler => end up with a lot of false positive reports of missing dependencies
       'import/no-unresolved': 'off',
     },
   },
@@ -51,6 +51,14 @@ export const config = defineConfig([
   },
 
   {
-    ignores: ['dist/**', 'build/**', 'out/**', 'coverage/**', 'node_modules/**'],
+    ignores: [
+      'dist/**',
+      'build/**',
+      'out/**',
+      'coverage/**',
+      'node_modules/**',
+      '.next/**',
+      '.turbo/**',
+    ],
   },
 ])

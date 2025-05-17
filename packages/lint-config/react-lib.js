@@ -25,7 +25,7 @@ export const config = defineConfig([
     settings: { react: { version: 'detect' } },
     rules: {
       ...hookPlugin.configs.recommended.rules,
-      // WHY: React scope no longer necessary with new JSX transform.
+      // ? React scope no longer necessary with new JSX transform.
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
     },
