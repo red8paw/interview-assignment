@@ -6,13 +6,14 @@ import { OPEN_WEATHER_API_KEY, OPEN_WEATHER_BASE_URL } from '../../config'
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams
   searchParams.set('appid', OPEN_WEATHER_API_KEY)
+  searchParams.set('units', 'metric')
 
   try {
     const { status, data } = await toru(
       `get ${OPEN_WEATHER_BASE_URL}/data/2.5/forecast?${searchParams.toString()}`,
     )
 
-    return NextResponse.json({ data }, { status })
+    return NextResponse.json(data, { status })
   } catch (error) {
     if (error instanceof HttpError) {
       return NextResponse.json({ error }, { status: 500 })

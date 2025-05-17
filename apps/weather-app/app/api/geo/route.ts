@@ -12,7 +12,7 @@ export const GET = async (request: NextRequest) => {
       `get ${OPEN_WEATHER_BASE_URL}/geo/1.0/direct?${searchParams.toString()}`,
     )
 
-    return NextResponse.json({ data }, { status })
+    return NextResponse.json(data, { status })
   } catch (error) {
     if (error instanceof HttpError) {
       return NextResponse.json({ error }, { status: 500 })
