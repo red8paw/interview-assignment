@@ -20,6 +20,7 @@ export const config = defineConfig([
       '@typescript-eslint/no-unused-vars': ['warn'],
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
       '@typescript-eslint/consistent-type-imports': [
         'warn',
         {
