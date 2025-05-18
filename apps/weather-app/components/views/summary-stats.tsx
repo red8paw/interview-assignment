@@ -6,7 +6,7 @@ import { Stats } from '../base/stats'
 import { useCurrentWeather } from '@/hooks/current-weather'
 import { DEFAULT_COORD } from '@/common/coord'
 
-export const BonusStats: FC = () => {
+export const SummaryStats: FC = () => {
   const { data } = useCurrentWeather(DEFAULT_COORD)
   const { main: mainStats, wind: windStats, visibility } = data ?? {}
   const { humidity = 0, feels_like: realFeel } = mainStats ?? {}

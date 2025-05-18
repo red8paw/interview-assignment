@@ -9,7 +9,7 @@ import { formatDate } from '@/utils/datetime-format'
 export const CurrentSummary: FC = () => {
   const { data } = useCurrentWeather(DEFAULT_COORD)
   const { name = '--', dt, weather: summary, main: mainStats } = data ?? {}
-  const { icon = '', description = '' } = summary?.[0] ?? {}
+  const { icon, description = '' } = summary?.[0] ?? {}
   const { temp = 0 } = mainStats ?? {}
   const currentDate = dt ? new Date(dt * 1_000) : new Date()
 
@@ -22,7 +22,12 @@ export const CurrentSummary: FC = () => {
         <div className="text-sm sm:text-base capitalize font-semibold tracking-wide">
           {description}
         </div>
-        <SummaryImg icon={icon} description={description} size={200} className="-mt-6 -mb-5" />
+        {icon ? (
+          <SummaryImg icon={icon} description={description} size={208} className="-mt-6 -mb-5" />
+        ) : (
+          <div className="size-52 bg-secondary rounded-full animate-pulse" />
+        )}
+
         <div className="text-5xl sm:text-6xl font-semibold tracking-wide">{temp}°C</div>
       </div>
     </div>
