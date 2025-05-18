@@ -24,12 +24,9 @@ type CurrentWeatherData = {
   name: string
   cod: number
 }
-type CurrentWeatherResponse = {
-  data: CurrentWeatherData
-}
 
 export const fetchCurrentWeather = async (coord: Coord) => {
-  const result = await toru<CurrentWeatherResponse>(
+  const result = await toru<CurrentWeatherData>(
     `get /api/weather/current?lat=${coord.lat}&lon=${coord.lon}`,
   )
 

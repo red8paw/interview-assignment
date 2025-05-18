@@ -1,14 +1,14 @@
 import type { FC } from 'react'
-import { Button } from '@/components/ui/button'
-import { CurrentWeather } from '@/components/current-weather'
-import { Forecast } from '@/components/forecast'
+import { CurrentSummary } from '@/components/views/summary'
+import { Forecast } from '@/components/views/forecast'
+import { BonusStats } from '@/components/views/bonus-stats'
 
 const HomePage: FC = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <Button>Get Started</Button>
-      <CurrentWeather />
-      <Forecast />
+    <div className="min-h-screen w-screen max-w-xl flex flex-col gap-4 m-auto px-8 pt-20 pb-20 md:p-12 border-l border-r border-border">
+      <CurrentSummary />
+      <BonusStats />
+      {/* <Forecast /> */}
     </div>
   )
 }

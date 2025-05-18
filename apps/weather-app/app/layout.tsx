@@ -7,6 +7,7 @@ import './globals.css'
 const rubikSans = Rubik({
   variable: '--font-rubik-sans',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -24,7 +25,9 @@ const RootLayout: FC<Props> = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${rubikSans.variable} antialiased font-sans`}>{children}</body>
+      <body className={`${rubikSans.variable} antialiased font-sans bg-background text-foreground`}>
+        {children}
+      </body>
     </html>
   )
 }

@@ -34,12 +34,9 @@ type ForecastData = {
   list: Forecast[]
   city: City
 }
-type ForecastResponse = {
-  data: ForecastData
-}
 
 export const fetchForecast = async (coord: Coord) => {
-  const result = await toru<ForecastResponse>(
+  const result = await toru<ForecastData>(
     `get /api/weather/forecast?lat=${coord.lat}&lon=${coord.lon}`,
   )
 
