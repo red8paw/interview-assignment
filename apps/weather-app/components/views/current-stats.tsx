@@ -3,14 +3,15 @@
 import type { FC } from 'react'
 import { ThermometerSunIcon, WindIcon, DropletIcon, BinocularsIcon } from 'lucide-react'
 import { Stats } from '../base/stats'
+import { WindDirectionArrow } from '../base/wind-direction-arrow'
 import { useCurrentWeather } from '@/hooks/current-weather'
 import { DEFAULT_COORD } from '@/common/coord'
 
-export const SummaryStats: FC = () => {
+export const CurrentStats: FC = () => {
   const { data } = useCurrentWeather(DEFAULT_COORD)
   const { main: mainStats, wind: windStats, visibility } = data ?? {}
   const { humidity = 0, feels_like: realFeel } = mainStats ?? {}
-  const { speed } = windStats ?? {}
+  const { speed, deg } = windStats ?? {}
 
   return (
     <div className="p-6 mt-10 bg-secondary text-secondary-foreground rounded-lg grid grid-cols-2 grid-rows-2 gap-4">
@@ -18,7 +19,10 @@ export const SummaryStats: FC = () => {
         {realFeel ? `${realFeel}°C` : '--'}
       </Stats>
       <Stats icon={<WindIcon />} label="wind">
-        {speed ? `${speed} m/s` : '--'}
+        <div className="flex gap-1">
+          {deg !== undefined && <WindDirectionArrow deg={deg} />}
+          <div>{speed ? `${speed} m/s` : '--'}</div>
+        </div>
       </Stats>
       <Stats icon={<DropletIcon />} label="humidity">
         {humidity ? `${humidity}%` : '--'}

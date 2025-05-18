@@ -25,7 +25,9 @@ const RootLayout: FC<Props> = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${rubikSans.variable} antialiased font-sans bg-background text-foreground`}>
+      <body
+        className={`${rubikSans.variable} antialiased font-sans text-base bg-background text-foreground`}
+      >
         {children}
       </body>
     </html>

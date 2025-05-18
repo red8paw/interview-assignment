@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { SummaryImg } from './summary-img'
 import { InlineStats } from './inline-stats'
+import { WindDirectionArrow } from './wind-direction-arrow'
 import type { Forecast } from '@/services/forecast'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { formatTime } from '@/utils/datetime-format'
@@ -20,6 +21,7 @@ export const ForecastItem: FC<Props> = ({ item }) => {
   const { weather: summary, dt, main, wind, visibility } = item
   const { description, icon } = summary[0]
   const { temp, feels_like: realFeel, humidity } = main
+  const { speed, deg } = wind
   const date = new Date(dt * 1000)
 
   return (
@@ -49,7 +51,10 @@ export const ForecastItem: FC<Props> = ({ item }) => {
             {humidity}%
           </InlineStats>
           <InlineStats icon={<WindIcon size={20} />} label="Wind speed">
-            {wind.speed} m/s
+            <div className="flex gap-1">
+              {deg !== undefined && <WindDirectionArrow deg={deg} />}
+              <div>{speed} m/s</div>
+            </div>
           </InlineStats>
           <InlineStats icon={<BinocularsIcon size={20} />} label="Visibility">
             {visibility / 1000} km

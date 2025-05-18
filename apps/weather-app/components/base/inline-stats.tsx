@@ -10,7 +10,7 @@ export const InlineStats: FC<Props> = ({ icon, label, children }) => {
     <div className="flex items-center text-base">
       {icon}
       <div className="ml-2 font-normal">{label}</div>
-      <div className="flex-1 font-semibold text-right">{children}</div>
+      <div className="font-semibold ml-auto">{children}</div>
     </div>
   )
 }
