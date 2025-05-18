@@ -2,10 +2,10 @@ import { toru } from '@workspace/toru'
 import type { CloudsStats, MainStats, RainStats, Summary, WindStats } from '@/common/stats'
 import type { Coord } from '@/common/coord'
 
-type Sys = {
+export type Sys = {
   pod: string
 }
-type Forecast = {
+export type Forecast = {
   dt: number
   main: MainStats
   weather: Summary[]

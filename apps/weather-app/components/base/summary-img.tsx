@@ -9,10 +9,11 @@ const ICON_EXT = 'png'
 type Props = {
   icon: string
   description: string
+  size: number
 } & Omit<ImageProps, 'src' | 'alt' | 'width' | 'height'>
 
-export const SummaryImg: FC<Props> = ({ icon, description, ...rest }) => {
+export const SummaryImg: FC<Props> = ({ icon, description, size, ...rest }) => {
   const src = `${BASE_URL}/${icon}@${ICON_SIZE}.${ICON_EXT}`
 
-  return <Image src={src} alt={description} width={200} height={200} {...rest} />
+  return <Image src={src} alt={description} width={size} height={size} {...rest} />
 }
