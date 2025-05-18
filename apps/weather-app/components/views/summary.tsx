@@ -18,7 +18,7 @@ export const CurrentSummary: FC = () => {
       <h1 className="text-3xl font-semibold truncate">{name}</h1>
       <p className="text-lg text-secondary-foreground truncate">{formatDate(currentDate)}</p>
 
-      <div className="flex flex-col items-center justify-between mt-20">
+      <div className="flex flex-col items-center justify-between mt-16">
         <div className="text-sm sm:text-base capitalize font-semibold tracking-wide">
           {description}
         </div>

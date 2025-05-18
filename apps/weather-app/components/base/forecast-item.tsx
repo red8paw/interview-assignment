@@ -26,7 +26,7 @@ export const ForecastItem: FC<Props> = ({ item }) => {
     <AccordionItem value={item.dt.toString()}>
       <AccordionTrigger>
         <div className="flex items-center justify-center gap-2 w-full">
-          <div className="flex-1 font-semibold text-base">{formatTime(date)}</div>
+          <div className="flex-1 font-normal text-base">{formatTime(date)}</div>
 
           <div className="capitalize font-semibold text-base">{description}</div>
           <SummaryImg
