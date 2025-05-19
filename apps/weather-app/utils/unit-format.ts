@@ -1,5 +1,7 @@
-export const formatCelsiusTemp = (temp: number | undefined): string =>
+export const formatRoundedCelsiusTemp = (temp: number | undefined): string =>
   `${temp === undefined ? '--' : Math.round(temp)}°C`
+
+export const formatCelsiusTemp = (temp: number | undefined): string => `${temp ?? '--'}°C`
 
 export const formatHumidity = (humidity: number | undefined): string =>
   `${humidity === undefined ? '--' : Math.round(humidity)}%`

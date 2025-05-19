@@ -3,7 +3,7 @@
 import type { FC } from 'react'
 import { SummaryImg } from '@/components/base/summary-img'
 import { useCurrentWeather } from '@/hooks/current-weather'
-import { formatCelsiusTemp } from '@/utils/unit-format'
+import { formatRoundedCelsiusTemp } from '@/utils/unit-format'
 
 export const CurrentSummary: FC = () => {
   const { data } = useCurrentWeather()
@@ -19,7 +19,7 @@ export const CurrentSummary: FC = () => {
       </div>
       <SummaryImg icon={icon} description={description} size={208} className="-mt-6 -mb-5" />
       <div className="text-6xl sm:text-7xl font-semibold tracking-wide">
-        {formatCelsiusTemp(mainStats?.temp)}
+        {formatRoundedCelsiusTemp(mainStats?.temp)}
       </div>
     </div>
   )
