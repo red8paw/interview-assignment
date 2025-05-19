@@ -27,7 +27,7 @@ type CurrentWeatherData = {
 
 export const fetchCurrentWeather = async (coord: Coord) => {
   const result = await toru<CurrentWeatherData>(
-    `get /api/weather/current?lat=${coord.lat}&lon=${coord.lon}`,
+    `/api/weather/current?lat=${coord.lat}&lon=${coord.lon}`,
   )
 
   return result.data

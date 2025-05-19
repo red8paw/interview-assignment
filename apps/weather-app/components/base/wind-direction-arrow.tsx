@@ -5,5 +5,5 @@ type Props = {
   deg: number
 }
 export const WindDirectionArrow: FC<Props> = ({ deg }) => {
-  return <ChevronsDownIcon size={24} style={{ transform: `rotate(${deg}deg)` }} />
+  return <ChevronsDownIcon className="size-6" style={{ transform: `rotate(${deg}deg)` }} />
 }

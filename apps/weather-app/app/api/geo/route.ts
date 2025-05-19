@@ -9,7 +9,7 @@ export const GET = async (request: NextRequest) => {
 
   try {
     const { status, data } = await toru(
-      `get ${OPEN_WEATHER_BASE_URL}/geo/1.0/direct?${searchParams.toString()}`,
+      `${OPEN_WEATHER_BASE_URL}/geo/1.0/direct?${searchParams.toString()}`,
     )
 
     return NextResponse.json(data, { status })

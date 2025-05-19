@@ -1,17 +1,16 @@
 export type RequestMethod = 'get' | 'post' | 'put' | 'patch' | 'delete'
-type Route = string
-export type RequestRoute = `${RequestMethod} ${Route}`
 
 export type RequestHeaders = {
   contentType?: string
   authorization?: string
 }
 
-export type RequestOption = Omit<RequestInit, 'headers' | 'body'> & {
+export type RequestOption = Omit<RequestInit, 'headers' | 'body' | 'method'> & {
   /**
    * Use `key` to tell request to execute this kind of request only once at a time
    */
   key?: string
+  method?: RequestMethod
   headers?: RequestHeaders
   body?: BodyInit | object
 }

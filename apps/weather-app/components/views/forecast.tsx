@@ -2,11 +2,10 @@
 
 import type { FC } from 'react'
 import { ForecastList } from '../base/forecast-list'
-import { DEFAULT_COORD } from '@/common/coord'
 import { useForecast } from '@/hooks/forecast'
 
 export const Forecast5Day: FC = () => {
-  const { data } = useForecast(DEFAULT_COORD)
+  const { data } = useForecast()
 
   return (
     <div className="p-6 bg-secondary text-secondary-foreground rounded-lg">

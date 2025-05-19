@@ -1,22 +1,20 @@
 import { requestController } from './abort-controller'
 import { allowedMethods, requestTimeoutInMs } from './configurations'
 import { HttpError } from './error'
-import type { RequestMethod, RequestOption, RequestRoute, ResponseType } from './types'
+import type { RequestOption, ResponseType } from './types'
 
 const DEFAULT_CONTENT_TYPE = 'application/json'
 
 export const request = async <R = unknown>(
-  route: RequestRoute,
+  endpoint: string,
   option: RequestOption = {},
 ): Promise<ResponseType<R>> => {
-  const [method, endpoint] = route.split(' ', 2) as [RequestMethod, string]
+  const { headers = {}, body, key: requestKey, method = 'get', ...restOpts } = option
 
   // ? `method` validation
   if (!allowedMethods.includes(method)) {
     throw new Error('Request method not allowed')
   }
-
-  const { headers = {}, body, key: requestKey, ...restOpts } = option
 
   // ? `header` initialization & validation
   const requestHeaders = new Headers({ Accept: 'application/json' })

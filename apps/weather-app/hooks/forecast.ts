@@ -1,10 +1,11 @@
 import useSWR from 'swr'
 import { SwrKey } from '@/common/swr-key'
-import type { Coord } from '@/common/coord'
 import { fetchForecast } from '@/services/forecast'
+import { getSelectedLocation } from '@/helpers/location-storage'
 
-export const useForecast = (coord: Coord) => {
-  const { lat, lon } = coord
+export const useForecast = () => {
+  const geoInfo = getSelectedLocation()
+  const { lat, lon } = geoInfo
 
-  return useSWR([SwrKey.useForecast, lat, lon], () => fetchForecast(coord))
+  return useSWR([SwrKey.useForecast, lat, lon], () => fetchForecast({ lat, lon }))
 }

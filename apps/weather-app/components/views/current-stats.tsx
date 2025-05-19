@@ -5,10 +5,9 @@ import { ThermometerSunIcon, WindIcon, DropletIcon, BinocularsIcon } from 'lucid
 import { Stats } from '../base/stats'
 import { WindDirectionArrow } from '../base/wind-direction-arrow'
 import { useCurrentWeather } from '@/hooks/current-weather'
-import { DEFAULT_COORD } from '@/common/coord'
 
 export const CurrentStats: FC = () => {
-  const { data } = useCurrentWeather(DEFAULT_COORD)
+  const { data } = useCurrentWeather()
   const { main: mainStats, wind: windStats, visibility } = data ?? {}
   const { humidity = 0, feels_like: realFeel } = mainStats ?? {}
   const { speed, deg } = windStats ?? {}
