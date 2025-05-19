@@ -9,7 +9,7 @@ type Sys = {
   sunrise: number
   sunset: number
 }
-type CurrentWeatherData = {
+export type CurrentWeatherData = {
   coord: Coord
   weather: [Summary]
   base: string

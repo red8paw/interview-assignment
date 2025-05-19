@@ -27,7 +27,7 @@ type City = {
   sunrise: number
   sunset: number
 }
-type ForecastData = {
+export type ForecastData = {
   cod: string
   message: number
   cnt: number

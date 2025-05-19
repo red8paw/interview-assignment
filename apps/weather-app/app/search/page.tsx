@@ -1,73 +1,34 @@
 'use client'
 
-import { useRef, type FC } from 'react'
+import { type FC } from 'react'
+import { ArrowLeftIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { AppContainer } from '@/components/base/app-container'
-import { Input } from '@/components/ui/input'
+import { SearchBox } from '@/components/views/search-box'
+import { SearchHistory } from '@/components/views/search-history'
 import { Button } from '@/components/ui/button'
-import { useSearchLocation } from '@/hooks/search-location'
-import type { GeoInfo } from '@/services/search-location'
-import { setSelectedLocation } from '@/helpers/location-storage'
+import { Divider } from '@/components/base/divider'
 
 const SearchPage: FC = () => {
   const router = useRouter()
-  const inputRef = useRef<HTMLInputElement>(null)
-  const { data, trigger, isMutating } = useSearchLocation()
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    if (isMutating) return
-
-    const inputValue = inputRef?.current?.value
-    if (!inputValue) return
-
-    void trigger(inputValue)
-  }
-
-  const handleSelectLocation = (location: GeoInfo) => {
-    setSelectedLocation(location)
-    router.push('/')
+  const handleClickBack = () => {
+    router.back()
   }
 
   return (
     <AppContainer>
-      <div className="flex flex-col">
-        <h1 className="text-3xl font-semibold truncate">Search</h1>
-        <p className="text-lg text-secondary-foreground truncate">
-          Search your location to get the latest weather updates.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
-        <Input ref={inputRef} autoFocus type="text" placeholder="Search by city name, code" />
-        <Button type="submit" size="lg">
-          Search
-        </Button>
-      </form>
-
-      <div className="uppercase text-sm tracking-wider font-semibold text-slate-500">
-        Search Result
-      </div>
-
       <div>
-        {data?.map(gl => (
-          <div key={`${gl.lat}${gl.lon}`} className="flex items-center gap-2 font-semibold">
-            <p>{`${gl.name}, ${gl.state ? `${gl.state}, ` : ''} ${gl.country}`}</p>
+        <Button size="icon" onClick={handleClickBack} variant="ghost">
+          <ArrowLeftIcon className="size-6" />
+        </Button>
 
-            <Button
-              variant="outline"
-              size="sm"
-              className="ml-auto"
-              onClick={() => {
-                handleSelectLocation(gl)
-              }}
-            >
-              Select
-            </Button>
-          </div>
-        ))}
+        <h1 className="text-3xl font-semibold truncate">Location</h1>
       </div>
+
+      <SearchBox />
+      <Divider className="mt-10" />
+      <SearchHistory />
     </AppContainer>
   )
 }

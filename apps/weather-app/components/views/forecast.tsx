@@ -8,7 +8,7 @@ export const Forecast5Day: FC = () => {
   const { data } = useForecast()
 
   return (
-    <div className="p-6 bg-secondary text-secondary-foreground rounded-lg">
+    <div className="mt-4 p-6 bg-secondary text-secondary-foreground rounded-lg">
       <div className="uppercase text-sm tracking-wider font-semibold text-slate-500">
         5-days forecast
       </div>

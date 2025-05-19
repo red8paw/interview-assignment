@@ -13,7 +13,7 @@ export const CurrentStats: FC = () => {
   const { speed, deg } = windStats ?? {}
 
   return (
-    <div className="p-6 mt-10 bg-secondary text-secondary-foreground rounded-lg grid grid-cols-2 grid-rows-2 gap-4">
+    <div className="p-6 mt-12 bg-secondary text-secondary-foreground rounded-lg grid grid-cols-2 grid-rows-2 gap-4">
       <Stats icon={<ThermometerSunIcon />} label="real feel">
         {realFeel ? `${realFeel}°C` : '--'}
       </Stats>
