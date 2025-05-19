@@ -2,33 +2,44 @@
 
 import type { FC } from 'react'
 import { ThermometerSunIcon, WindIcon, DropletIcon, BinocularsIcon } from 'lucide-react'
-import { Stats } from '../base/stats'
-import { WindDirectionArrow } from '../base/wind-direction-arrow'
+import { Stats } from '@/components/base/stats'
+import { WindDirectionArrow } from '@/components/base/wind-direction-arrow'
+import { Card } from '@/components/base/card'
 import { useCurrentWeather } from '@/hooks/current-weather'
+import {
+  formatCelsiusTemp,
+  formatHumidity,
+  formatVisibility,
+  formatWindSpeed,
+} from '@/utils/unit-format'
 
 export const CurrentStats: FC = () => {
   const { data } = useCurrentWeather()
+
   const { main: mainStats, wind: windStats, visibility } = data ?? {}
-  const { humidity = 0, feels_like: realFeel } = mainStats ?? {}
-  const { speed, deg } = windStats ?? {}
+  const { humidity, feels_like: realFeel } = mainStats ?? {}
+  const { speed, deg = 0 } = windStats ?? {}
 
   return (
-    <div className="p-6 mt-12 bg-secondary text-secondary-foreground rounded-lg grid grid-cols-2 grid-rows-2 gap-4">
+    <Card className="mt-12 grid grid-cols-2 grid-rows-2 gap-2 sm:gap-4">
       <Stats icon={<ThermometerSunIcon />} label="real feel">
-        {realFeel ? `${realFeel}°C` : '--'}
+        {formatCelsiusTemp(realFeel)}
       </Stats>
+
       <Stats icon={<WindIcon />} label="wind">
         <div className="flex gap-1">
-          {deg !== undefined && <WindDirectionArrow deg={deg} />}
-          <div>{speed ? `${speed} m/s` : '--'}</div>
+          <WindDirectionArrow deg={deg} />
+          {formatWindSpeed(speed)}
         </div>
       </Stats>
+
       <Stats icon={<DropletIcon />} label="humidity">
-        {humidity ? `${humidity}%` : '--'}
+        {formatHumidity(humidity)}
       </Stats>
+
       <Stats icon={<BinocularsIcon />} label="visibility">
-        {visibility ? `${visibility / 1000} km` : '--'}
+        {formatVisibility(visibility)}
       </Stats>
-    </div>
+    </Card>
   )
 }

@@ -8,8 +8,8 @@ type Props = {
 
 export const Stats: FC<Props> = ({ children, icon, label }) => {
   return (
-    <div className="flex flex-col">
-      <div className="flex gap-2 items-center">
+    <div className="flex flex-col truncate">
+      <div className="flex gap-2 items-center font-medium text-slate-600">
         <div className="size-6">{icon}</div>
         <div className="uppercase text-sm tracking-wider">{label}</div>
       </div>

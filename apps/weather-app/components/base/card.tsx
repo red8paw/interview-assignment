@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 export const Card: FC<ComponentProps<'div'>> = ({ children, className, ...rest }) => {
   return (
     <div
-      className={cn('p-6 bg-secondary text-secondary-foreground rounded-lg', className)}
+      className={cn('p-4 sm:p-6 bg-secondary text-secondary-foreground rounded-lg', className)}
       {...rest}
     >
       {children}
