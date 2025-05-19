@@ -4,8 +4,9 @@ import type { FormEventHandler, FC } from 'react'
 import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { SearchIcon, FileChartLineIcon } from 'lucide-react'
+import { SearchIcon } from 'lucide-react'
 import { Subtitle } from '../base/subtitle'
+import { LocationItem } from '../base/location-item'
 import { Button } from '@/components/ui/button'
 import { useSearchLocation } from '@/hooks/search-location'
 import type { GeoInfo } from '@/services/search-location'
@@ -53,20 +54,8 @@ export const SearchBox: FC = () => {
       </form>
 
       <div className="mt-4 flex flex-col gap-2">
-        {data?.map(gl => (
-          <div key={`${gl.lat}${gl.lon}`} className="flex items-center gap-2">
-            <p className="text-2xl">{`${gl.name}, ${gl.state ? `${gl.state}, ` : ''} ${gl.country}`}</p>
-
-            <Button
-              variant="outline"
-              className="ml-auto"
-              onClick={() => {
-                handleSelectLocation(gl)
-              }}
-            >
-              <FileChartLineIcon /> View
-            </Button>
-          </div>
+        {data?.map(l => (
+          <LocationItem key={`${l.lat}${l.lon}`} geoInfo={l} onSelect={handleSelectLocation} />
         ))}
       </div>
     </div>

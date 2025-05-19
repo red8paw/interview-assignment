@@ -2,16 +2,16 @@
 
 import { useState, type FC } from 'react'
 import { useRouter } from 'next/navigation'
-import { FileChartLineIcon, Trash2Icon } from 'lucide-react'
 import { Subtitle } from '../base/subtitle'
-import { Button } from '@/components/ui/button'
 import { addHistory, deleteHistory, getLocationHistory } from '@/helpers/history-storage'
 import { setSelectedLocation } from '@/helpers/location-storage'
 import type { GeoInfo } from '@/services/search-location'
+import { LocationItem } from '@/components/base/location-item'
 
 export const SearchHistory: FC = () => {
   const router = useRouter()
   const [, setCount] = useState(0)
+
   const history = getLocationHistory()
 
   const forceReRender = (): void => {
@@ -33,29 +33,13 @@ export const SearchHistory: FC = () => {
     <div className="mt-3">
       <Subtitle>your location</Subtitle>
       <div className="mt-4 flex flex-col gap-4">
-        {history?.map(gl => (
-          <div key={`${gl.lat}${gl.lon}`} className="flex items-center gap-2">
-            <p className="text-2xl flex-1">{`${gl.name}, ${gl.state ? `${gl.state}, ` : ''} ${gl.country}`}</p>
-
-            <Button
-              variant="secondary"
-              size="icon"
-              onClick={() => {
-                handleDeleteLocation(gl)
-              }}
-            >
-              <Trash2Icon />
-            </Button>
-
-            <Button
-              variant="outline"
-              onClick={() => {
-                handleSelectLocation(gl)
-              }}
-            >
-              <FileChartLineIcon /> View
-            </Button>
-          </div>
+        {history?.map(l => (
+          <LocationItem
+            key={`${l.lat}${l.lon}`}
+            geoInfo={l}
+            onSelect={handleSelectLocation}
+            onDelete={handleDeleteLocation}
+          />
         ))}
       </div>
     </div>
