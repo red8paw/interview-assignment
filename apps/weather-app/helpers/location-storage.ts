@@ -1,7 +1,7 @@
 import { StorageKey } from '@/common/storage-key'
 import type { GeoInfo } from '@/services/search-location'
 
-export const DEFAULT_LOCATION: GeoInfo = {
+const DEFAULT_LOCATION: GeoInfo = {
   name: 'Singapore',
   lat: 1.2899175,
   lon: 103.8519072,
