@@ -7,7 +7,7 @@ export const AppContainer: FC<ComponentProps<'div'>> = ({ className, children, .
       className={cn(
         'min-h-screen w-screen max-w-xl',
         'flex flex-col',
-        'm-auto px-4 py-8 md:px-12 md:py-24',
+        'm-auto px-4 py-8 sm:px-12 sm:pb-20 sm:pt-12',
         'border-l border-r border-border',
         className,
       )}

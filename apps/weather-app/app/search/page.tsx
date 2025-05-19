@@ -12,14 +12,14 @@ import { Divider } from '@/components/base/divider'
 const SearchPage: FC = () => {
   const router = useRouter()
 
-  const handleClickBack = () => {
+  const handleClickBack = (): void => {
     router.back()
   }
 
   return (
     <AppContainer>
       <div>
-        <Button size="icon" onClick={handleClickBack} variant="ghost">
+        <Button size="iconlg" onClick={handleClickBack} variant="ghost">
           <ArrowLeftIcon className="size-6" />
         </Button>
 

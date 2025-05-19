@@ -21,7 +21,7 @@ export const CurrentStats: FC = () => {
   const { speed, deg = 0 } = windStats ?? {}
 
   return (
-    <Card className="mt-12 grid grid-cols-2 grid-rows-2 gap-2 sm:gap-4">
+    <Card className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
       <Stats icon={<ThermometerSunIcon />} label="real feel">
         {formatCelsiusTemp(realFeel)}
       </Stats>

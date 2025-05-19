@@ -18,7 +18,7 @@ export const CurrentLocationHeader: FC = () => {
         <h1 className="text-3xl font-semibold truncate">{name}</h1>
 
         <Link href="/search">
-          <Button size="icon" variant="ghost">
+          <Button size="iconlg" variant="ghost">
             <SearchIcon className="size-6" />
           </Button>
         </Link>

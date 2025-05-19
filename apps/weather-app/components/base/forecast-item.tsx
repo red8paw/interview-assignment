@@ -13,6 +13,12 @@ import { WindDirectionArrow } from './wind-direction-arrow'
 import type { Forecast } from '@/services/forecast'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { formatTime } from '@/utils/datetime-format'
+import {
+  formatCelsiusTemp,
+  formatHumidity,
+  formatVisibility,
+  formatWindSpeed,
+} from '@/utils/unit-format'
 
 type Props = {
   item: Forecast
@@ -30,34 +36,34 @@ export const ForecastItem: FC<Props> = ({ item }) => {
         <div className="flex items-center justify-center gap-2 w-full">
           <div className="flex-1 font-semibold text-base">{formatTime(date)}</div>
 
-          <div className="capitalize font-normal text-base">{description}</div>
+          <div className="capitalize font-normal text-base truncate">{description}</div>
           <SummaryImg
             description={description}
             icon={icon}
             size={40}
-            className="bg-background rounded-full shrink-0 shadow-md"
+            className="size-10 bg-background rounded-full shrink-0 shadow-md"
           />
         </div>
       </AccordionTrigger>
       <AccordionContent>
         <div className="w-full pr-8 flex flex-col gap-2">
           <InlineStats icon={<ThermometerIcon size={20} />} label="Temperature">
-            {temp}°C
+            {formatCelsiusTemp(temp)}
           </InlineStats>
           <InlineStats icon={<ThermometerSunIcon size={20} />} label="Real feel">
-            {realFeel}°C
+            {formatCelsiusTemp(realFeel)}
           </InlineStats>
           <InlineStats icon={<DropletIcon size={20} />} label="Humidity">
-            {humidity}%
+            {formatHumidity(humidity)}
           </InlineStats>
           <InlineStats icon={<WindIcon size={20} />} label="Wind speed">
             <div className="flex gap-1">
-              {deg !== undefined && <WindDirectionArrow deg={deg} />}
-              <div>{speed} m/s</div>
+              <WindDirectionArrow deg={deg} />
+              {formatWindSpeed(speed)}
             </div>
           </InlineStats>
           <InlineStats icon={<BinocularsIcon size={20} />} label="Visibility">
-            {visibility / 1000} km
+            {formatVisibility(visibility)}
           </InlineStats>
         </div>
       </AccordionContent>

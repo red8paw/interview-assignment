@@ -4,14 +4,15 @@ import type { FC } from 'react'
 import { ForecastList } from '../base/forecast-list'
 import { useForecast } from '@/hooks/forecast'
 import { Subtitle } from '@/components/base/subtitle'
+import { Card } from '@/components/base/card'
 
 export const Forecast5Day: FC = () => {
   const { data } = useForecast()
 
   return (
-    <div className="mt-4 p-6 bg-secondary text-secondary-foreground rounded-lg">
+    <Card className="mt-4">
       <Subtitle>5-days forecast</Subtitle>
       <ForecastList list={data?.list ?? []} />
-    </div>
+    </Card>
   )
 }

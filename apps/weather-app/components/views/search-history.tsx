@@ -3,16 +3,16 @@
 import { useState, type FC } from 'react'
 import { useRouter } from 'next/navigation'
 import { Subtitle } from '../base/subtitle'
-import { addHistory, deleteHistory, getLocationHistory } from '@/helpers/history-storage'
+import { addHistory, deleteHistory } from '@/helpers/history-storage'
 import { setSelectedLocation } from '@/helpers/location-storage'
 import type { GeoInfo } from '@/services/search-location'
 import { LocationItem } from '@/components/base/location-item'
+import { useSearchHistory } from '@/hooks/search-history'
 
 export const SearchHistory: FC = () => {
   const router = useRouter()
   const [, setCount] = useState(0)
-
-  const history = getLocationHistory()
+  const history = useSearchHistory()
 
   const forceReRender = (): void => {
     setCount(c => c + 1)
