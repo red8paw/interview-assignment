@@ -9,4 +9,4 @@ export const formatHumidity = (humidity: number | undefined): string =>
 export const formatWindSpeed = (speed: number | undefined): string => `${speed ?? '--'} m/s`
 
 export const formatVisibility = (vInMetre: number | undefined): string =>
-  `${vInMetre === undefined ? '--' : vInMetre / 1_000} m/s`
+  `${vInMetre === undefined ? '--' : vInMetre / 1_000} km`
