@@ -12,7 +12,7 @@ export const ForecastList: FC<Props> = ({ list }) => {
   const groups = groupByDate(list)
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 min-h-[600px]">
       {groups.map(group => (
         <div key={group[0].dt}>
           <div className="text-sm tracking-wider font-semibold text-slate-500 mt-4">

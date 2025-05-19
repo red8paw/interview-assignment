@@ -23,7 +23,7 @@ export const LocationItem: FC<Props> = ({ onSelect, onDelete, geoInfo }) => {
 
   return (
     <div className="flex items-center gap-2">
-      <div className="text-2xl flex-1">{title}</div>
+      <div className="text-xl flex-1">{title}</div>
 
       {onDelete && (
         <Button variant="secondary" size="icon" onClick={handleClickDelete}>
