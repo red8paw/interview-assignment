@@ -1,7 +1,7 @@
 import { StorageKey } from '@/common/storage-key'
 import type { GeoInfo } from '@/services/search-location'
 
-const DEFAULT_LOCATION: GeoInfo = {
+export const DEFAULT_LOCATION: GeoInfo = {
   name: 'Singapore',
   lat: 1.2899175,
   lon: 103.8519072,
@@ -28,8 +28,9 @@ export const getSelectedLocation = (): GeoInfo => {
   }
 }
 
-export const setSelectedLocation = (newLocation: GeoInfo) => {
-  if (typeof window === 'undefined') return
+export const setSelectedLocation = (newLocation: GeoInfo): void => {
+  if (typeof window === 'undefined')
+    throw new Error('setSelectedLocation do NOT support server side')
 
   localStorage.setItem(StorageKey.SelectedLocation, JSON.stringify(newLocation))
 }

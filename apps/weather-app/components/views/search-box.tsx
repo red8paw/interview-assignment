@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, type FC } from 'react'
+import type { FormEventHandler, FC } from 'react'
+import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { SearchIcon, FileChartLineIcon } from 'lucide-react'
@@ -10,13 +11,14 @@ import { useSearchLocation } from '@/hooks/search-location'
 import type { GeoInfo } from '@/services/search-location'
 import { setSelectedLocation } from '@/helpers/location-storage'
 import { Input } from '@/components/ui/input'
+import { addHistory } from '@/helpers/history-storage'
 
 export const SearchBox: FC = () => {
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const { data, trigger, isMutating } = useSearchLocation()
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
 
     if (isMutating) return
@@ -27,8 +29,9 @@ export const SearchBox: FC = () => {
     void trigger(inputValue)
   }
 
-  const handleSelectLocation = (location: GeoInfo) => {
+  const handleSelectLocation = (location: GeoInfo): void => {
     setSelectedLocation(location)
+    addHistory(location)
     router.push('/')
   }
 
